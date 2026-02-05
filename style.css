@@ -1,0 +1,233 @@
+/* =========================================
+   1. GLOBAL RESETS
+   ========================================= */
+* {
+    margin: 0; padding: 0; box-sizing: border-box;
+    font-family: 'Fredoka', sans-serif;
+    user-select: none;
+}
+
+body {
+    width: 100vw; height: 100vh; overflow: hidden;
+    display: flex; justify-content: center; align-items: center;
+    position: relative;
+}
+
+/* =========================================
+   2. BACKGROUNDS (Corrected for Contrast)
+   ========================================= */
+#gradient-bg {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    z-index: -10;
+    /* Start Page: Very Light Pink */
+    background: linear-gradient(135deg, #ffe6e6 0%, #ffc0cb 100%);
+    transition: background 2.0s ease-in-out;
+}
+
+/* Step 2: Warm Pink */
+.bg-warm { background: linear-gradient(135deg, #ffc1cc 0%, #ff9a9e 100%) !important; }
+
+/* FIX: Made lighter so dark red text stands out beautifully */
+.bg-romantic { background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%) !important; }
+
+/* Final: Dark Red/Pink */
+.bg-dark-love { background: linear-gradient(135deg, #ff0844 0%, #ff758c 100%) !important; }
+
+/* =========================================
+   3. LAYOUT & STICKERS
+   ========================================= */
+.container {
+    position: relative; z-index: 20; 
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center;
+    width: 90%; max-width: 600px; height: 100%;
+}
+
+.sticker-wrapper {
+    margin-bottom: 20px; z-index: 102; 
+    position: relative; min-height: 250px; 
+    transition: all 1s ease-in-out; 
+}
+
+#sticker-img {
+    width: 250px; height: auto; object-fit: contain;
+    transition: transform 0.3s;
+}
+
+.text-wrapper {
+    margin-bottom: 30px; z-index: 102; 
+    min-height: 60px; position: relative;
+}
+
+/* FIX: Changed color to Deep Carmine Red (#960018) for readability */
+#main-text {
+    font-size: 2rem; 
+    color: #960018; 
+    font-weight: 600;
+    text-shadow: 0 2px 4px rgba(255, 255, 255, 0.6); /* Subtle glow */
+    transition: all 0.5s ease;
+}
+
+/* =========================================
+   4. BUTTONS
+   ========================================= */
+.btn {
+    padding: 12px 35px; font-size: 1.3rem; font-weight: 600;
+    border: none; border-radius: 50px; cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.3s;
+    box-shadow: 0 6px 20px rgba(255, 105, 180, 0.3);
+    position: relative;
+}
+.btn:hover { transform: scale(1.05); }
+
+#primary-btn { background-color: #ff6b6b; color: white; }
+
+#f11-hint {
+    margin-top: 10px; font-size: 0.9rem; color: #960018; opacity: 0.8;
+}
+
+#choice-buttons {
+    display: flex; gap: 20px; justify-content: center;
+    align-items: center; position: relative; width: 100%;
+}
+
+.yes-style {
+    background-color: #2ecc71; color: white; z-index: 30;
+    font-size: 1.8rem; padding: 15px 40px;
+    transition: all 1s ease-in-out;
+}
+
+.no-style {
+    background-color: #e74c3c; color: white;
+    position: relative; z-index: 29;
+}
+
+/* =========================================
+   5. FLOWERS (5 Heart-Shaped Petals)
+   ========================================= */
+#rose-container {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 10; pointer-events: none; 
+}
+#rose-container.active {
+    pointer-events: auto;
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>') 10 10, auto;
+}
+
+.rose-stem {
+    position: absolute; bottom: 0; width: 4px;
+    background-color: #88d498; transform-origin: bottom center;
+    transition: height 1s ease-out;
+}
+
+.rose-bloom {
+    position: absolute;
+    width: 0; height: 0; 
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.petal {
+    position: absolute;
+    width: 20px; height: 20px;
+    background: #e0b0ff; /* Light Pinkish Purple */
+    opacity: 0.9;
+    box-shadow: 0 0 2px rgba(0,0,0,0.1);
+    top: -10px; left: -10px; 
+}
+
+/* CSS Heart Shape */
+.petal::before, .petal::after {
+    content: "";
+    position: absolute;
+    width: 100%; height: 100%;
+    background: inherit;
+    border-radius: 50%;
+}
+.petal::before { top: -50%; left: 0; }
+.petal::after { top: 0; left: 50%; }
+
+#reset-flowers {
+    position: fixed; bottom: 20px; right: 20px;
+    padding: 10px 20px; 
+    background: rgba(255, 255, 255, 0.25);
+    border: 2px solid white; 
+    border-radius: 20px;
+    color: white; font-weight: bold; font-size: 0.9rem;
+    cursor: pointer; z-index: 1000;
+    backdrop-filter: blur(5px);
+    transition: background 0.3s;
+}
+#reset-flowers:hover {
+    background: rgba(255, 255, 255, 0.5);
+    transform: scale(1.05);
+}
+
+/* =========================================
+   6. GRID & EXTRAS
+   ========================================= */
+#photo-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 10px; width: 100%; margin-top: 20px; z-index: 105; 
+}
+.photo-item {
+    position: relative; width: 100%; padding-bottom: 100%;
+    border-radius: 15px; overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    cursor: pointer; background-color: #fff;
+}
+.photo-img {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    object-fit: cover; transform: translateY(100%);
+    transition: transform 0.6s ease;
+}
+.photo-curtain {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(to top, #ff9a9e, #fad0c4);
+    display: flex; justify-content: center; align-items: center;
+    color: white; font-size: 0.9rem; font-weight: bold;
+    text-align: center; transition: transform 0.6s ease;
+}
+.photo-item.revealed .photo-curtain { transform: translateY(-100%); }
+.photo-item.revealed .photo-img { transform: translateY(0); }
+
+.signature {
+    position: fixed; bottom: 20px; left: 20px;
+    padding: 8px 15px; background: rgba(255, 255, 255, 0.4);
+    border: 2px solid rgba(255, 105, 180, 0.4);
+    border-radius: 20px 20px 20px 0;
+    font-size: 0.9rem; color: #d6336c; font-weight: 600;
+    backdrop-filter: blur(4px); z-index: 1000;
+}
+
+.hidden { display: none !important; }
+
+#countdown {
+    font-size: 6rem; color: #ff6b6b; font-weight: 600;
+    animation: pulseTimer 1s infinite;
+}
+@keyframes pulseTimer {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.2); opacity: 0.8; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.floating-heart {
+    position: absolute; bottom: -50px; font-size: 24px;
+    animation: floatUp linear infinite; opacity: 0.7; z-index: 0; 
+}
+@keyframes floatUp {
+    0% { transform: translateY(0) rotate(0deg); opacity: 0.7; }
+    100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+}
+
+.sparkle {
+    position: absolute; width: 8px; height: 8px;
+    background: white; border-radius: 50%; pointer-events: none;
+    z-index: 101; animation: sparkleAnim 1.5s infinite;
+}
+@keyframes sparkleAnim {
+    0%, 100% { opacity: 0; transform: scale(0); }
+    50% { opacity: 1; transform: scale(1.5); box-shadow: 0 0 10px white; }
+}

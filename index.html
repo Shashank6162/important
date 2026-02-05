@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For You ❤️</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div id="gradient-bg"></div>
+    <div id="floating-hearts"></div>
+    <div id="rose-container"></div>
+
+    <main class="container">
+        <div class="sticker-wrapper">
+            <img id="sticker-img" src="assets/stickers/excited.gif" alt="Sticker">
+        </div>
+
+        <div class="text-wrapper">
+            <h1 id="main-text">Loading...</h1>
+        </div>
+
+        <div id="countdown" class="hidden">5</div>
+
+        <div class="button-wrapper">
+            <button id="primary-btn" class="btn">Click here to start</button>
+            <p id="f11-hint" class="hidden">(Press F11 for best experience)</p>
+            
+            <div id="choice-buttons" class="hidden">
+                <button id="yes-btn" class="btn yes-style">YES ❤️</button>
+                <button id="no-btn" class="btn no-style">No</button>
+            </div>
+        </div>
+
+        <div id="photo-grid" class="hidden"></div>
+
+        <button id="reset-flowers" class="hidden">Reset Flowers 🌸</button>
+    </main>
+
+    <div class="signature">Made by Shashank ❤️</div>
+
+    <audio id="bg-music-1" loop>
+        <source src="assets/music/cute_bgm.mp3" type="audio/mp3">
+    </audio>
+    <audio id="bg-music-2" loop>
+        <source src="assets/music/romantic_final.mp3" type="audio/mp3">
+    </audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
